@@ -1,0 +1,183 @@
+---
+title: "***Increased Temperature Increases Global Wealth Inequality***"
+subtitle: "Rising temperatures due to climate change will strongly affect economic growth around the world, making some countries richer and some poorer."
+author: "*Vineeth Sai Narajala*"
+date: "February 21, 2017"
+subject: "English 131"
+output: html_document
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EsHgFKLynmc" frameborder="0" allowfullscreen></iframe>
+
+```{r setup, include = FALSE}
+
+# loads the required libraries 
+library("dplyr")
+library("httr")
+library("jsonlite")
+library("knitr")
+library("ggplot2")
+library("tidyr")
+library("mapdata")
+library("plotly")
+
+# loads the requires csv files
+gdp.change <- read.csv("data/GDPcap_ClimateChange_RCP85_SSP5.csv", stringsAsFactors = F)
+
+gdp.nochange <- read.csv("data/GDPcap_NOClimateChange_RCP85_SSP5.csv", stringsAsFactors = F)
+country.indicator <- read.csv("data/CountryIndicators - Definition and Source.csv", stringsAsFactors = F)
+worldbank.data <- read.csv("data/WorldBank_CountryIndicators.csv", stringsAsFactors = F)
+
+# stores the percent GDP changes 
+gdp.change.decades <- select(gdp.change, X2010, X2020, X2030, X2040, X2050, X2060, X2070, X2080, X2090, X2099)
+gdp.nochange.decades <- select(gdp.nochange, X2010, X2020, X2030, X2040, X2050, X2060, X2070, X2080, X2090, X2099)
+change.percent <- 100*(gdp.change.decades - gdp.nochange.decades)/gdp.nochange.decades
+change.percent <- mutate(change.percent,meantemp = gdp.change$meantemp, ISO3 = gdp.change$ISO3 )
+
+colnames(change.percent) <- c( "X2010", "X2020", "X2030", "X2040", "X2050", "X2060", "X2070", "X2080", "X2090", "X2099","meantemp", "Country.Code")
+
+# widens the data frame containing the world bank data 
+worldbank.data <- spread(worldbank.data, Series.Name,  value)
+
+world <- map_data("world")
+```
+
+### That's why an increase in extremely hot days is one of the more worrisome prospects of climate change. To predict just how various countries might suffer or benefit, a team of scientists at Stanford and the University of California, Berkeley, have turned to historical records of how temperature affects key aspects of the economy.
+
+### The researchers behind the study, published in the journal Nature, found that temperature change due to unmitigated global warming will leave global GDP per capita 23% lower in 2100 than it would be without any warming. "We're basically throwing away money by not addressing the issue," said Marshall Burke, an assistant professor at Stanford University. "We see our study as providing an estimate of the benefits of reducing emissions." (time.com)
+
+### But the effects of a hotter world will be shared very unevenly, with a number of northern countries, including Russia and much of Europe, benefiting from the rising temperatures. The uneven impact of the warming "could mean a massive restructuring of the global economy," says Solomon Hsiang, a professor at the Goldman School of Public Policy at Berkeley, one of the researchers who have painstakingly documented the historical impact of temperature.
+
+### Data citation: Burke, Hsiang, and Miguel (2015)  https://web.stanford.edu/~mburke/climate/ 
+
+#### Most graphs are interactive. Explore!
+#
+# *Graphing GDP difference between 2099 & 2010 and mean temperature*
+
+### This is a map of the world
+
+```{r, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
+# converts into the required data frame 
+world <- mutate(world, Country.Code = iso.alpha(region, n=3))
+world <- left_join(world, change.percent, by="Country.Code")
+world <- gather(world, years, value, X2010:X2090, factor_key = TRUE)
+year20 <- world[world$years == "X2010",]
+# plots the data
+gg.world <- ggplot(world[world$years == "X2010",]) + geom_polygon(aes(x=long, y=lat, group=as.factor(group), fill=region)) +
+    theme(legend.position="none")+
+      coord_quickmap() +
+        labs(title = "Chloropleth Map", x = "Latitude", y = "Longitude", fill = "Mean temperature in 2010")
+ggplotly(gg.world)
+
+```
+
+### This is a map of the world and the colors represent mean temperature in 2010
+#### You can hover over to see exact mean temperature, select and zoom in
+```{r, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
+# plots the data
+gg.world <- ggplot(world[world$years == "X2010",]) + geom_polygon(aes(x=long, y=lat, group=as.factor(group), fill=meantemp)) +
+    
+      coord_quickmap() +
+        labs(title = "Mean temperature in 2010", x = "Latitude", y = "Longitude", fill = "Mean temperature in 2010")
+ggplotly(gg.world, tooltip = c("meantemp", "region"))
+
+```
+
+### Because poorer countries, including those in much of South America and Africa, already tend to be far hotter than what's ideal for economic growth, the effect of rising temperatures will be particularly damaging to them. Average income for the world's poorest 60 percent of people by century's end will be 70 percent below what it would have been without climate change, conclude Hsiang and his coauthors in a recent Nature paper. The result of the rising temperatures, he says, "will be a huge redistribution of wealth from the global poor to the wealthy."
+
+
+# *Average Net GDP of the world with respect to time*
+
+```{r, echo = FALSE, warning = FALSE}
+change.percent <- mutate(change.percent, change = X2099-X2010)
+# plots the data
+gg1 <- ggplot(data = change.percent) +
+  geom_point(mapping = aes(x = meantemp, y = change, color = change)) + labs(title = "GDP Difference between 2099 & 2010 vs Mean temperature", x = "Mean Temperature", y = "Percent GDP Difference")
+ggplotly(gg1)
+```
+
+
+### As seen in the graph below, the average Net GPD of a country decreases with increase in mean temperature. This could be due to decrease in productive which is caused by higher temperatures. For example, a country with mean temperature less than 10c has a better growth rate than countries with temperature greater than 10c.
+
+
+### This smooth curve shows the same in a more pleasing way. 
+
+
+#
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+gg2 <- ggplot(data = change.percent) +
+    geom_smooth(mapping = aes(x = meantemp, y = change, fill = change),color = "Green", se=FALSE)+
+    labs(title = "GDP Difference between 2099 & 2010 vs mean temperature", x = "Mean Temperature", y = "Percent GDP Difference")
+ggplotly(gg2)
+
+```
+
+# *GDP difference in 2050 vs the current CO2 emissions*
+
+#### This plot shows the percent GDP difference in 2090 vs the current CO2 emissions of various countries
+
+#
+
+```{r, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+
+colnames(worldbank.data) <- c("Series.Code", "Country.Name", "Country.Code", "Adult_Literacy_Rate", "Agriculture", "CO2_emissions", "Debt", "FDI", "GDP", "GDP Growth", "GDP_per_capita", "GINI_Index", "GNI_Atlas", "GNI_PPP", "Inflation_GDPDefaltor", "Inflation_ConsumerPrices", "Internet_Users", "Life_Expectancy", "Population", "Poverty", "Unemployment")
+
+emission.data <- select(worldbank.data,Country.Code, CO2_emissions) %>% na.omit()
+
+# joins the data frames 
+joint.data <- left_join(change.percent, emission.data, by="Country.Code")
+
+# plots the data
+gg3 <- ggplot(data = joint.data) + geom_point(aes(x=X2090, y=CO2_emissions, color = X2090)) +
+  geom_spoke(mapping = aes(x = X2090, y = CO2_emissions), angle = 1, radius = 5, color = "Red",se=FALSE) +
+    geom_smooth(mapping = aes(x = X2090, y = CO2_emissions),color = "Green", se=FALSE) +
+    labs(title = "CO2 emissions vs GDP Difference in 2090", x = "Percent GDP Difference", y = "CO2 emissions")
+ggplotly(gg3)
+
+```
+
+
+# *Time line of change in various countries*
+
+## Mapping CO2 emissions and GDP difference in the world
+
+### This graph shows the map visualisation (chloropleth map) of the percent GDP difference across various countries over a time period differnce of 10 years and the current CO2 emissions in each country visually by the use of colors. This map shows a clear and important connection between economic prosparity and CO2 emmission. Countries like USA have higher CO2 emmission but countries like India have the highest rate of increase of CO2.
+
+### As you can see below that very few contries have an increase in GDP and most of the world will suffer.
+
+```{r, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
+
+# plots the data
+gg.world2 <- ggplot(world[world$years == c("X2010","X2020", "X2040", "X2060", "X2080", "X2090"),]) + geom_polygon(aes(x=long, y=lat, group=as.factor(group), fill=cut(value, c(-500,-400,-300,-200,-100, 0, 100, 200, 300, 400, 500, 600)))) +
+  facet_wrap(~years) +
+    scale_fill_brewer(type = seq, palette = "Set1") +
+      coord_quickmap() +
+        labs(title = "Chloropleth Map", x = "Latitude", y = "Longitude", fill = "Percent GDP Difference")
+gg.world2
+
+```
+
+### Hotter weather is just one of the effects of climate change; shifts in rainfall and an increase in severe weather like hurricanes are among the others. But by analyzing temperatures alone, Hsiang and his coworkers have provided more precise estimates of how climate change could affect the economy. It turns out, Hsiang says, that temperature has a surprisingly consistent effect on different economic inputs: labor supply, labor productivity, and crop yields all drop off dramatically between 20 °C and 30 °C. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 °C in an average U.S. county costs each resident $20 in unearned income. "It's real money."
+
+```{r, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
+
+# plots the data
+gg.world1 <- ggplot(world[world$years == "X2090",]) + geom_polygon(aes(x=long, y=lat, group=as.factor(group), fill=cut(value, c(-500,-400,-300,-200,-100, 0, 100, 200, 300, 400, 500, 600)))) +
+  
+    scale_fill_brewer(type = seq, palette = "Set1") +
+      coord_quickmap() +
+        labs(title = "Change in GDP", x = "Latitude", y = "Longitude", fill = "Percent GDP Difference")
+ggplotly(gg.world1,tooltip =world$region)
+
+```
+
+
+
+
+
+
+
+
+
+
+
