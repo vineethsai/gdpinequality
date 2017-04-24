@@ -9,6 +9,7 @@ output: html_document
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EsHgFKLynmc" frameborder="0" allowfullscreen></iframe>
 
+
 ```{r setup, include = FALSE}
 
 # loads the required libraries 
@@ -157,7 +158,7 @@ gg.world2
 
 ```
 
-### Hotter weather is just one of the effects of climate change; shifts in rainfall and an increase in severe weather like hurricanes are among the others. But by analyzing temperatures alone, Hsiang and his coworkers have provided more precise estimates of how climate change could affect the economy. It turns out, Hsiang says, that temperature has a surprisingly consistent effect on different economic inputs: labor supply, labor productivity, and crop yields all drop off dramatically between 20 °C and 30 °C. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 °C in an average U.S. county costs each resident $20 in unearned income. "It's real money."
+### Hotter weather is just one of the effects of climate change; shifts in rainfall and an increase in severe weather like hurricanes are among the others. But by analyzing temperatures alone, Hsiang and his coworkers have provided more precise estimates of how climate change could affect the economy. It turns out, Hsiang says, that temperature has a surprisingly consistent effect on different economic inputs: labor supply, labor productivity, and crop yields all drop off dramatically between 20 Â°C and 30 Â°C. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 Â°C in an average U.S. county costs each resident $20 in unearned income. "It's real money."
 
 ```{r, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
 
