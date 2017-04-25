@@ -1,5 +1,5 @@
 ---
-title: "***Increased Temperature Increases Global Wealth Inequality***"
+title: "***Can you lose your job because of Climate Change?***"
 subtitle: "Rising temperatures due to climate change will strongly affect economic growth around the world, making some countries richer and some poorer."
 author: "*Vineeth Sai Narajala*"
 date: "February 21, 2017"
@@ -42,11 +42,12 @@ worldbank.data <- spread(worldbank.data, Series.Name,  value)
 world <- map_data("world")
 ```
 
-### That's why an increase in extremely hot days is one of the more worrisome prospects of climate change. To predict just how various countries might suffer or benefit, a team of scientists at Stanford and the University of California, Berkeley, have turned to historical records of how temperature affects key aspects of the economy.
 
-### The researchers behind the study, published in the journal Nature, found that temperature change due to unmitigated global warming will leave global GDP per capita 23% lower in 2100 than it would be without any warming. "We're basically throwing away money by not addressing the issue," said Marshall Burke, an assistant professor at Stanford University. "We see our study as providing an estimate of the benefits of reducing emissions." (time.com)
+### Hence, an increase in extremely hot days is necessarily something to worry about when it comes to climate change. A team of scientists at Stanford and the University of California, Berkeley, have turned to historical records of how temperature affects key aspects of the economy to somehow see how various countries might profit or suffer.
 
-### But the effects of a hotter world will be shared very unevenly, with a number of northern countries, including Russia and much of Europe, benefiting from the rising temperatures. The uneven impact of the warming "could mean a massive restructuring of the global economy," says Solomon Hsiang, a professor at the Goldman School of Public Policy at Berkeley, one of the researchers who have painstakingly documented the historical impact of temperature.
+### The researchers behind the study found that temperature change due to unmitigated global warming will leave global GDP per capita 23% lower in 2100 than it would be without any warming. "We're basically throwing away money by not addressing the issue," said Marshall Burke, an assistant professor at Stanford University. "We see our study as providing an estimate of the benefits of reducing emissions." (time.com)
+
+### With a number or various countries (mainly in Europe) benefitting from the rising tempreatures, the effects of a hotter world will be shared very unevenly. The uneven impact of the warming "could mean a massive restructuring of the global economy," says Solomon Hsiang, a professor at the Goldman School of Public Policy at Berkeley, one of the researchers who have painstakingly documented the historical impact of temperature.
 
 ### Data citation: Burke, Hsiang, and Miguel (2015)  https://web.stanford.edu/~mburke/climate/ 
 
@@ -73,6 +74,7 @@ ggplotly(gg.world)
 
 ### This is a map of the world and the colors represent mean temperature in 2010
 #### You can hover over to see exact mean temperature, select and zoom in
+
 ```{r, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
 # plots the data
 gg.world <- ggplot(world[world$years == "X2010",]) + geom_polygon(aes(x=long, y=lat, group=as.factor(group), fill=meantemp)) +
@@ -83,7 +85,7 @@ ggplotly(gg.world, tooltip = c("meantemp", "region"))
 
 ```
 
-### Because poorer countries, including those in much of South America and Africa, already tend to be far hotter than what's ideal for economic growth, the effect of rising temperatures will be particularly damaging to them. Average income for the world's poorest 60 percent of people by century's end will be 70 percent below what it would have been without climate change, conclude Hsiang and his coauthors in a recent Nature paper. The result of the rising temperatures, he says, "will be a huge redistribution of wealth from the global poor to the wealthy."
+### Because poorer countries, including those in much of South America and Africa, tend to be hotter than what's necessary for economic growth, the effect of rising temperatures will in particular be damaging to them. Average income for the world's poorest 60 percent of people by century's end will grow to 70 percent below what it would have been without climate change, conclude Hsiang and his coauthors in a recent Nature paper. The result of the rising temperatures, he says, "will be a huge redistribution of wealth from the global poor to the wealthy."
 
 
 # *Average Net GDP of the world with respect to time*
@@ -157,7 +159,7 @@ gg.world2
 
 ```
 
-### Hotter weather is just one of the effects of climate change; shifts in rainfall and an increase in severe weather like hurricanes are among the others. But by analyzing temperatures alone, Hsiang and his coworkers have provided more precise estimates of how climate change could affect the economy. It turns out, Hsiang says, that temperature has a surprisingly consistent effect on different economic inputs: labor supply, labor productivity, and crop yields all drop off dramatically between 20 °C and 30 °C. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 °C in an average U.S. county costs each resident $20 in unearned income. "It's real money."
+### Warmer weather is just one of the many effects of climate change; changes in rainfall and a drastic increase in weather like hurricanes are some of the others. But by analyzing temperatures alone, Hsiang and his coworkers have shown more accurate estimates of how climate change affects the economy. It turns out, Hsiang says, that temperature has a surprisingly constant effect on different economic inputs: labor supply, labor productivity, and crop yields all drop off dramatically between 20 °C and 30 °C. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 °C in an average U.S. county costs each resident $20 in unearned income. "It's real money."
 
 ```{r, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
 
