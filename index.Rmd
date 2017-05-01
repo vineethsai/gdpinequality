@@ -48,7 +48,7 @@ world <- map_data("world")
 
 ### The researchers behind the study found that temperature change due to unmitigated global warming will leave global GDP per capita 23% lower in 2100 than it would be without any warming. "We're basically throwing away money by not addressing the issue," said Marshall Burke, an assistant professor at Stanford University. "We see our study as providing an estimate of the benefits of reducing emissions." (time.com)
 
-### With a number or various countries (mainly in Europe) benefitting from the rising tempreatures, the effects of a hotter world will be shared very unevenly. The uneven impact of the warming "could mean a massive restructuring of the global economy," says Solomon Hsiang, a professor at the Goldman School of Public Policy at Berkeley, one of the researchers who have painstakingly documented the historical impact of temperature.
+### With a number or various countries (mainly in Europe) benefitting from the rising temperatures, the effects of a hotter world will be shared very unevenly. The uneven impact of the warming "could mean a massive restructuring of the global economy," says Solomon Hsiang, a professor at the Goldman School of Public Policy at Berkeley, one of the researchers who has painstakingly documented the historical impact of temperature.
 
 ### Data citation: Burke, Hsiang, and Miguel (2015)  https://web.stanford.edu/~mburke/climate/ 
 
@@ -86,7 +86,7 @@ ggplotly(gg.world, tooltip = c("meantemp", "region"))
 
 ```
 
-### Because poorer countries, including those in much of South America and Africa, tend to be hotter than what's necessary for economic growth, the effect of rising temperatures will in particular be damaging to them. Average income for the world's poorest 60 percent of people by century's end will grow to 70 percent below what it would have been without climate change, conclude Hsiang and his coauthors in a recent Nature paper. The result of the rising temperatures, he says, "will be a huge redistribution of wealth from the global poor to the wealthy."
+### Because of poorer countries, including those in much of South America and Africa, tend to be hotter than what's necessary for economic growth, the effect of rising temperatures will, in particular, be damaging to them. Average income for the world's poorest 60 percent of people by century's end will grow to 70 percent below what it would have been without climate change, conclude Hsiang and his coauthors in a recent Nature paper. The result of the rising temperatures, he says, "will be a huge redistribution of wealth from the global poor to the wealthy."
 
 
 # *Average Net GDP of the world with respect to time*
@@ -160,11 +160,11 @@ gg.world2
 
 ```
 
-<<<<<<< HEAD
-### Warmer weather is just one of the many effects of climate change; changes in rainfall and a drastic increase in weather like hurricanes are some of the others. But by analyzing temperatures alone, Hsiang and his coworkers have shown more accurate estimates of how climate change affects the economy. It turns out, Hsiang says, that temperature has a surprisingly constant effect on different economic inputs: labor supply, labor productivity, and crop yields all drop off dramatically between 20 캜 and 30 캜. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 캜 in an average U.S. county costs each resident $20 in unearned income. "It's real money."
-=======
-### Hotter weather is just one of the effects of climate change; shifts in rainfall and an increase in severe weather like hurricanes are among the others. But by analyzing temperatures alone, Hsiang and his coworkers have provided more precise estimates of how climate change could affect the economy. It turns out, Hsiang says, that temperature has a surprisingly consistent effect on different economic inputs: labor supply, labor productivity, and crop yields all drop off dramatically between 20 째C and 30 째C. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 째C in an average U.S. county costs each resident $20 in unearned income. "It's real money."
->>>>>>> bb11f305ea5a0f4ba64a372c9ba75d5ccf6d2e87
+
+### Warmer weather is just one of the many effects of climate change; changes in rainfall and a drastic increase in weather like hurricanes are some of the others. But by analysing temperatures alone, Hsiang and his coworkers have shown more accurate estimates of how climate change affects the economy. It turns out, Hsiang says, that temperature has a surprisingly constant effect on different economic inputs: labour supply, labour productivity, and crop yields all drop off dramatically between 20 캜 and 30 캜. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 캜 in an average U.S. county costs each resident $20 in unearned income. "It's real money."
+
+### Hotter weather is just one of the effects of climate change; shifts in rainfall and an increase in severe weather like hurricanes are among the others. But by analysing temperatures alone, Hsiang and his coworkers have provided more precise estimates of how climate change could affect the economy. It turns out, Hsiang says, that temperature has a surprisingly consistent effect on different economic inputs: labour supply, labour productivity, and crop yields all drop off dramatically between 20 째C and 30 째C. "Whether you're looking at crops or people, hot days are bad," he says. "Even in the richest and most technologically advanced nation in the world, you will see [the negative effects]," he says, citing data showing that a day over 30 째C in an average U.S. county costs each resident $20 in unearned income. "It's real money."
+
 
 ```{r, echo=FALSE, fig.width=10, message=FALSE, warning=FALSE}
 
@@ -178,8 +178,11 @@ ggplotly(gg.world1,tooltip =world$region)
 
 ```
 
+### Donate to Greenpeace to help fight climate change http://www.greenpeace.org/usa/global-warming/
 
+<br><br><br><br>
 
+<img src="Capture.png" style="width: 1000px; height: 100px;">
 
 
 
